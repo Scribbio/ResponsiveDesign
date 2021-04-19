@@ -1,0 +1,74 @@
+$mobile-breakpoint: 768px;
+$desktop-breakpoint: 960px;
+$mobile-font-size: 14px;
+
+@mixin mobile {
+	@media (min-width: $mobile-breakpoint) {
+		@content;
+	}
+}
+
+@mixin tablet {
+	@media (min-width: $tablet-breakpoint) and (max-width: $desktop-breakpoint) {
+		@content;
+	}
+}
+
+html {
+	box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+	box-sizing: inherit;
+}
+
+.gallery {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	// flex-wrap: wrap;
+
+	@include mobile {
+		flex-direction: row;
+		flex-wrap: wrap;
+	}
+
+	@include tablet() {
+		// tablet specific properties
+	}
+
+	&__item {
+		width: 75%;
+		padding: 1rem;
+		margin: 0.5rem;
+		background-color: pink;
+
+		@include mobile {
+			width: 20%;
+		}
+
+		@include tablet() {
+			// tablet specific properties
+		}
+	}
+}
+
+.img--vector {
+	width: 25%;
+	height: 25%;
+}
+
+// On screens that are 768px wide or more, adjust gallery item width
+@media screen and (min-width: $mobile-breakpoint) {
+	.gallery .gallery__item {
+		width: 20%;
+	}
+
+	.gallery {
+		flex-direction: row;
+		flex-wrap: wrap;
+	}
+}
